@@ -10,6 +10,8 @@ public class CreatureCreation : MonoBehaviour
     Vector3 v;
     GameObject go;
 
+    bool wolfActive;
+
     public GameObject body;
     public GameObject[] ears;
     public GameObject[] horns;
@@ -17,21 +19,18 @@ public class CreatureCreation : MonoBehaviour
     public GameObject[] tail;
     public GameObject[] feet;
 
+    private void Start()
+    {
+        wolfActive = false;
+    }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
 
-            if(Physics.Raycast(ray, out hit))
-            {
-                parent = new GameObject("Parent" + creatures.Count);
-                parent.transform.position = hit.point;
-                genCreature();
-                creatures.Add(parent);
-            }
             
+
 
         }
     }
@@ -59,28 +58,46 @@ public class CreatureCreation : MonoBehaviour
        
     }
 
-    private void genCreature()
+    public void genCreature()
     {
-        int num;
-        Instantiate(body, parent.transform);
-        num = Random.Range(0, ears.Length);
-        Instantiate(ears[num], parent.transform);
-        num = Random.Range(0, feet.Length);
-        Instantiate(feet[num], parent.transform);
-        num = Random.Range(0, snoot.Length);
-        Instantiate(snoot[num], parent.transform);
-        num = Random.Range(0, tail.Length);
-        Instantiate(tail[num], parent.transform);
 
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-        num = Random.Range(0, 2);
-        if (num == 0)
+        if (Physics.Raycast(ray, out hit))
         {
-            Instantiate(horns[num], parent.transform);
+            parent = new GameObject("Parent" + creatures.Count);
+            parent.transform.position = hit.point;
+            int num;
+            Instantiate(body, parent.transform);
+            num = Random.Range(0, ears.Length);
+            Instantiate(ears[num], parent.transform);
+            num = Random.Range(0, feet.Length);
+            Instantiate(feet[num], parent.transform);
+            num = Random.Range(0, snoot.Length);
+            Instantiate(snoot[num], parent.transform);
+            num = Random.Range(0, tail.Length);
+            Instantiate(tail[num], parent.transform);
+
+
+            num = Random.Range(0, 2);
+            if (num == 0)
+            {
+                Instantiate(horns[num], parent.transform);
+            }
+            
+            creatures.Add(parent);
         }
+
+        
 
     }
    
+   
+    public void genTree()
+    {
+        Debug.Log("Tree gen");
+    }
 }
 
 

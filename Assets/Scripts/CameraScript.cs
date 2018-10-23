@@ -26,7 +26,6 @@ public class CameraScript : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(Camera.main.transform.localEulerAngles.x + " " +Camera.main.transform.localEulerAngles.y);
         if (Input.GetMouseButton(1))
         {
             rotationX += Input.GetAxis("Mouse X") * cameraSensitivity * Time.deltaTime;
