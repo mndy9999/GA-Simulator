@@ -10,23 +10,25 @@ public class InventoryHandler : MonoBehaviour {
     public Toggle activeToggle;
 
     public CreatureCreation c;
-    string name;
+    string btnName;
 
     private void Start()
     {
         activeToggle = null;
-        name = null;
+        btnName = null;
     }
 
     void Update()
     {
         activeToggle = toggleGroup.ActiveToggles().FirstOrDefault();
+        toggleGroup.GetComponentInChildren<Toggle>().GetComponentInChildren<Image>().color = Color.white;
+        //toggleGroup.GetComponentInChildren<Image>().color = Color.red;
         activeToggle.GetComponentInChildren<Image>().color = Color.blue;
-        name = activeToggle.name;
+        btnName = activeToggle.name;
 
         if (Input.GetMouseButtonDown(0) && ! EventSystem.current.IsPointerOverGameObject())
         {
-            switch (name)
+            switch (btnName)
             {
                 case "Wolf":
                     c.genCreature();

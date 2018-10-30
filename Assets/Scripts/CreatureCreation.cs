@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CreatureCreation : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class CreatureCreation : MonoBehaviour
     public GameObject[] snoot;
     public GameObject[] tail;
     public GameObject[] feet;
+
+    public GameObject tree;
 
     private void Start()
     {
@@ -68,6 +71,10 @@ public class CreatureCreation : MonoBehaviour
         {
             parent = new GameObject("Parent" + creatures.Count);
             parent.transform.position = hit.point;
+            parent.transform.rotation = Quaternion.Euler(gameObject.transform.rotation.x, Random.Range(0, 360), gameObject.transform.rotation.z);
+            parent.AddComponent<NavMeshAgent>();
+            //parent.AddComponent<RandomWalk>();
+            
             int num;
             Instantiate(body, parent.transform);
             num = Random.Range(0, ears.Length);
@@ -96,7 +103,13 @@ public class CreatureCreation : MonoBehaviour
    
     public void genTree()
     {
-        Debug.Log("Tree gen");
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            Instantiate(tree, hit.point, Quaternion.Euler(-90, 0, 0));
+            //tree.transform.position = hit.point;
+        }
     }
 }
 
