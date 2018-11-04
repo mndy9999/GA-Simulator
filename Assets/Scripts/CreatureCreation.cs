@@ -21,6 +21,7 @@ public class CreatureCreation : MonoBehaviour
     public GameObject[] feet;
 
     public GameObject tree;
+    public GameObject shroom;
 
     private void Start()
     {
@@ -69,12 +70,17 @@ public class CreatureCreation : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            parent = new GameObject("Parent" + creatures.Count);
+            //parent = new GameObject("Parent" + creatures.Count);
+            foreach (Transform child in parent.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            Instantiate(parent);
+
+
             parent.transform.position = hit.point;
-            parent.transform.rotation = Quaternion.Euler(gameObject.transform.rotation.x, Random.Range(0, 360), gameObject.transform.rotation.z);
-            parent.AddComponent<NavMeshAgent>();
-            //parent.AddComponent<RandomWalk>();
-            
+            parent.transform.rotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
+            Debug.Log(parent.transform.rotation);
             int num;
             Instantiate(body, parent.transform);
             num = Random.Range(0, ears.Length);
@@ -107,8 +113,29 @@ public class CreatureCreation : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            Instantiate(tree, hit.point, Quaternion.Euler(-90, 0, 0));
-            //tree.transform.position = hit.point;
+            if(hit.transform.tag != "Tree")
+            {
+                Instantiate(tree, hit.point, Quaternion.Euler(-90, 0, 0));
+                tree.transform.tag = "Tree";
+                
+            }
+            
+        }
+    }
+
+    public void genShroom()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.transform.tag != "Shroom")
+            {
+                Instantiate(shroom, hit.point, Quaternion.identity);
+                tree.transform.tag = "Shroom";
+
+            }
+
         }
     }
 }

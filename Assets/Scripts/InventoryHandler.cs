@@ -21,9 +21,7 @@ public class InventoryHandler : MonoBehaviour {
     void Update()
     {
         activeToggle = toggleGroup.ActiveToggles().FirstOrDefault();
-        toggleGroup.GetComponentInChildren<Toggle>().GetComponentInChildren<Image>().color = Color.white;
-        //toggleGroup.GetComponentInChildren<Image>().color = Color.red;
-        activeToggle.GetComponentInChildren<Image>().color = Color.blue;
+
         btnName = activeToggle.name;
 
         if (Input.GetMouseButtonDown(0) && ! EventSystem.current.IsPointerOverGameObject())
@@ -35,6 +33,9 @@ public class InventoryHandler : MonoBehaviour {
                     break;
                 case "Tree":
                     c.genTree();
+                    break;
+                case "Shroom":
+                    c.genShroom();
                     break;
                 default:
                     break;

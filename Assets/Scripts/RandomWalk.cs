@@ -24,8 +24,8 @@ public class RandomWalk : MonoBehaviour
 
     Vector3 getNewRandomPosition()
     {
-        float x = Random.Range(-20, 20);
-        float z = Random.Range(-20, 20);
+        float x = Random.Range(-180, 180);
+        float z = Random.Range(-180, 180);
 
         Vector3 pos = new Vector3(x, 0, z);
         return pos;

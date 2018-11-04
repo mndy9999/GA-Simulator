@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - ears
+  - Perceiver
+  - Tree
+  - Shroom
   layers:
   - Default
   - TransparentFX
@@ -14,8 +17,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Interest
+  - Danger
   - 
   - 
   - 
