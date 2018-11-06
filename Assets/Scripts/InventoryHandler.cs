@@ -29,7 +29,7 @@ public class InventoryHandler : MonoBehaviour {
             switch (btnName)
             {
                 case "Wolf":
-                    c.genCreature();
+                    c.genCreatureAtMousePos();
                     break;
                 case "Tree":
                     c.genTree();

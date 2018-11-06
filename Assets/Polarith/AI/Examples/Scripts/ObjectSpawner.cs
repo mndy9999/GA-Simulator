@@ -159,8 +159,8 @@ namespace Polarith.AI.Package
                        xy * Random.Range(SpawnArea.y, SpawnArea.y + SpawnArea.height),
                        xz * Random.Range(SpawnArea.y, SpawnArea.y + SpawnArea.height));
 
-            if (ValidatePosition(randomPosition))
-            {
+           // if (ValidatePosition(randomPosition))
+            //{
                 GameObject obj = Instantiate(SpawningObject);
 
                 if (Parent != null)
@@ -169,9 +169,9 @@ namespace Polarith.AI.Package
                 obj.transform.position = randomPosition;
 
                 return true;
-            }
-            else
-                return false;
+            //}
+           // else
+           //     return false;
         }
 
         // -------------------------------------------------------------------------------------------------------------
